@@ -49,7 +49,8 @@ const net = require("net");
  ];
  var cipper = cplist[Math.floor(Math.floor(Math.random() * cplist.length))];
  var proxies = readLines(args.proxyFile);
- const parsedTarget = url.parse(args.target);
+ const parsedTarget = new URL(args.target);
+
 
  if (cluster.isMaster) {
     for (let counter = 1; counter <= args.threads; counter++) {
@@ -209,4 +210,5 @@ const net = require("net");
  
  const KillScript = () => process.exit(1); // Auto Stop ketika Durasi habis
  
+
  setTimeout(KillScript, args.time * 1000);
